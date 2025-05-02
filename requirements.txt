@@ -1,0 +1,13 @@
+# 必須ライブラリ
+matplotlib>=3.5.0
+numpy>=1.21.0
+Pillow>=9.0.0
+waveshare-epd>=1.0.0
+
+# 開発用追加ライブラリ (必要に応じて)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=4.0.0
+
+# 日本語フォント (ラズパイ用)
+fonts-noto-cjk
