@@ -1,8 +1,24 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+# ??????????????????????????
+
+# ??1: ???????????????
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['Noto Sans CJK JP', 'IPAPGothic', 'TakaoPGothic', 'VL PGothic']
+
+# デバイス設定
+EPD_WIDTH = 800
+EPD_HEIGHT = 480
 import numpy as np
 from datetime import datetime
 from matplotlib import gridspec
 from util.weather_client import WeatherClient
+
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), 'e-Paper/RaspberryPi_JetsonNano/python/lib'))
+# デバイス設定
 
 # デバイス設定
 EPD_WIDTH = 800
@@ -18,6 +34,8 @@ COLORS = {
     'secondary': 'green',
     'muted': 'gray'
 }
+
+output_path = './weather_dashboard.png'
 
 # フォント設定
 #plt.style.use('seaborn')
@@ -141,7 +159,7 @@ def main():
     plt.subplots_adjust(hspace=0.4)
 
     # 画像保存
-    output_path = './weather_dashboard.png'
+    
     plt.savefig(output_path, dpi=120, facecolor=COLORS['background'],
                bbox_inches='tight', pad_inches=0.2)
     plt.close()
@@ -154,20 +172,22 @@ def display_on_epaper(image_path):
     from waveshare_epd import epd7in3f
     
     try:
-        epd = epd7in3f.EPD()
-        epd.init()
-        epd.Clear()
-        
-        image = Image.open(image_path)
-        epd.display(epd.getbuffer(image))
-        
-        epd.sleep()
-        print("電子ペーパーに表示しました")
-    except Exception as e:
-        print(f"表示エラー: {e}")
+     epd = epd7in3f.EPD()
+     epd.init()
+     epd.Clear()
 
-# 実行
-#display_on_epaper(output_path)
+     image = Image.open(image_path)
+     epd.display(epd.getbuffer(image))
+
+     epd.sleep()
+     print("電子ペーパーに表示しました")
+    except Exception as e:
+     print(f"表示エラー: {e}")
+
+
 
 if __name__ == "__main__":
     main()
+
+    # 実行
+    display_on_epaper(output_path)
