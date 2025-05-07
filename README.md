@@ -53,6 +53,7 @@ epd.sleep()
 
 先に作成したPythonスクリプト（weather_7color_preview.png生成用）と、この表示スクリプトを組み合わせれば、定期的に天気情報を更新して電子ペーパーに反映できます。
 
+# lib修正点
 🔧 手順（epdconfig.py の修正）
 以下のファイルを開きます：
 
