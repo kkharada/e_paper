@@ -52,3 +52,28 @@ epd.sleep()
 ✅ 5. カスタム画像の作成も簡単！
 
 先に作成したPythonスクリプト（weather_7color_preview.png生成用）と、この表示スクリプトを組み合わせれば、定期的に天気情報を更新して電子ペーパーに反映できます。
+
+🔧 手順（epdconfig.py の修正）
+以下のファイルを開きます：
+
+bash
+Copy
+Edit
+nano ~/e-Paper/RaspberryPi_JetsonNano/python/lib/waveshare_epd/epdconfig.py
+下記のようなクラスの選択部分を探します（だいたい300行目付近）：
+
+python
+Copy
+Edit
+# implementation = JetsonNano()
+# implementation = RaspberryPi()
+implementation = OrangePi()
+RaspberryPi() を有効化して、それ以外をコメントアウトします：
+
+python
+Copy
+Edit
+implementation = RaspberryPi()
+# implementation = JetsonNano()
+# implementation = OrangePi()
+保存して終了（nanoの場合：Ctrl + O → Enter → Ctrl + X）
